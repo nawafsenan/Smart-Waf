@@ -1,6 +1,6 @@
 # SWAF (Smart Web Application Firewall)
 
-A comprehensive reverse proxy solution with built-in Web Application Firewall (WAF) capabilities, SSL certificate management, and machine learning-based threat detection.
+A comprehensive reverse proxy solution with built-in Web Application Firewall (WAF) capabilities, SSL certificate management, and deep learning-based threat detection.
 
 ## WAF Features
 
