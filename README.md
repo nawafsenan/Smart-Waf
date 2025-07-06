@@ -1,4 +1,4 @@
-# Reverse Proxy with WAF (Web Application Firewall)
+# SWAF (Smart Web Application Firewall)
 
 A comprehensive reverse proxy solution with built-in Web Application Firewall (WAF) capabilities, SSL certificate management, and machine learning-based threat detection.
 
@@ -35,7 +35,7 @@ A comprehensive reverse proxy solution with built-in Web Application Firewall (W
 - **User Behavior**: Track user behavior across sessions
 - **Performance Metrics**: Monitor system performance
 
-## Machine Learning Detection
+## Deep Learning Detection
 
 The system includes a pre-trained CNN-LSTM model for threat detection:
 - **Model File**: `cnn-lstm_character-level(98.9)(augmanted).h5`
