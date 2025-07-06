@@ -1,0 +1,43 @@
+policies:
+  - id: "default-security"
+    name: "Default Security Policy"
+    description: "Basic security rules for all domains"
+    rules:
+      - "sqli-001"
+      - "path-traversal-001"
+      - "command-injection-001"
+      - "mark-suspicious-ip"
+      - "suspicious-header-alert"
+    enabled: true
+
+  - id: "header-security"
+    name: "Header Security Policy"
+    description: "Security headers and header manipulation"
+    rules:
+      - "add-custom-header"
+      - "remove-server-header"
+      - "replace-user-agent"
+    enabled: false
+
+  - id: "session-management"
+    name: "Session Management Policy"
+    description: "Session-based security controls"
+    rules:
+      - "rate-limit-001"
+      - "idle-timeout-001"
+      - "blocked-session-001"
+    enabled: true
+
+  - id: "strict-security"
+    name: "Strict Security Policy"
+    description: "Maximum security with all rules enabled"
+    rules:
+      - "sqli-001"
+      - "path-traversal-001"
+      - "command-injection-001"
+      - "add-custom-header"
+      - "remove-server-header"
+      - "rate-limit-001"
+      - "idle-timeout-001"
+      - "blocked-session-001"
+    enabled: false

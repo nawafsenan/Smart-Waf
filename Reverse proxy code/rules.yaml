@@ -1,0 +1,117 @@
+rules:
+  # Security Pattern Rules
+  - id: "sqli-001"
+    type: "security-pattern"
+    pattern: "(union|select|insert|update|delete|drop|create|alter|exec|execute|script|javascript|vbscript|onload|onerror|onfocus)"
+    action: "block"
+    severity: "high"
+    description: "SQL Injection and XSS patterns"
+    enabled: true
+
+  - id: "path-traversal-001"
+    type: "security-pattern"
+    pattern: "(\\.\\./|\\.\\.\\\\|%2e%2e%2f|%2e%2e%5c)"
+    action: "block"
+    severity: "high"
+    description: "Path traversal attack patterns"
+    enabled: true
+
+  - id: "command-injection-001"
+    type: "security-pattern"
+    pattern: "ls"
+    action: "block"
+    severity: "high"
+    description: "Command injection patterns"
+    enabled: true
+
+  # Header Manipulation Rules
+  - id: "add-custom-header"
+    type: "header-manipulation"
+    subtype: "add-header"
+    header_name: "X-Custom-Header"
+    header_value: "CustomValue"
+    action: "modify"
+    severity: "low"
+    description: "Add custom header to all requests"
+    enabled: true
+
+  - id: "remove-server-header"
+    type: "header-manipulation"
+    subtype: "delete-header"
+    header_name: "Server"
+    action: "modify"
+    severity: "low"
+    description: "Remove server header for security"
+    enabled: true
+
+  - id: "replace-user-agent"
+    type: "header-manipulation"
+    subtype: "replace-header"
+    header_name: "User-Agent"
+    header_value: "CustomUserAgent/1.0"
+    action: "modify"
+    severity: "low"
+    description: "Replace user agent header"
+    enabled: false
+
+  # Session Management Rules
+  - id: "rate-limit-001"
+    type: "session-management"
+    subtype: "session-rate"
+    max_requests: 20
+    time_window: 60
+    block_duration: 30
+    action: "block"
+    severity: "medium"
+    description: "Rate limiting - max 20 requests per 60 seconds"
+    enabled: true
+
+  - id: "blocked-session-001"
+    type: "session-management"
+    subtype: "session-blocked"
+    max_blocked: 5
+    time_window: 300
+    block_duration: 30
+    action: "block"
+    severity: "high"
+    description: "Block session after 5 blocked requests within 5 minutes"
+    enabled: true
+
+  # IP-based Header Manipulation Rules
+  - id: "mark-suspicious-ip"
+    type: "header-manipulation"
+    subtype: "add-header"
+    header_name: "X-Suspicious-IP"
+    header_value: "true"
+    action: "modify"
+    severity: "high"
+    description: "Mark requests from suspicious IPs"
+    enabled: true
+    suspicious_ips:
+      - "192.168.1.11"
+      - "5.6.7.8"
+
+  # Conflict Resolution Examples
+  - id: "suspicious-header-alert"
+    type: "security-pattern"
+    pattern: "X-Suspicious-IP"
+    action: "alert"
+    severity: "medium"
+    description: "Alert if suspicious header is present"
+    enabled: true
+
+  - id: "suspicious-header-block"
+    type: "security-pattern"
+    pattern: "X-Suspicious-IP"
+    action: "block"
+    severity: "critical"
+    description: "Block if suspicious header is present (higher priority than alert)"
+    enabled: true
+
+  - id: "admin-access-block"
+    type: "security-pattern"
+    pattern: "/admin"
+    action: "block"
+    severity: "high"
+    description: "Block admin access attempts"
+    enabled: false
